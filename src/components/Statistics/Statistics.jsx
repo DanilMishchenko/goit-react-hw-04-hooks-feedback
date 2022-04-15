@@ -9,29 +9,25 @@ import {
 
 export class Statistics extends Component {
   static propTypes = {
-    good: PropTypes.number,
-    negative: PropTypes.number,
-    bad: PropTypes.number,
+    // good: PropTypes.number,
+    // negative: PropTypes.number,
+    // bad: PropTypes.number,
     total: PropTypes.number,
     positivePercentage: PropTypes.number,
   };
 
   render() {
-    const { good, neutral, bad, total, positivePercentage } = this.props;
+    const { options, total, positivePercentage } = this.props;
     return (
       <StatisticsList>
-        <StatisticsItem>
-          <StatisticsText>Good</StatisticsText>
-          <StatisticsNumber>{good}</StatisticsNumber>
-        </StatisticsItem>
-        <StatisticsItem>
-          <StatisticsText>Neutral</StatisticsText>
-          <StatisticsNumber>{neutral}</StatisticsNumber>
-        </StatisticsItem>
-        <StatisticsItem>
-          <StatisticsText>Bad</StatisticsText>
-          <StatisticsNumber>{bad}</StatisticsNumber>
-        </StatisticsItem>
+        {Object.keys(options).map(option => (
+          <StatisticsItem key={option}>
+            <StatisticsText>
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </StatisticsText>
+            <StatisticsNumber>{options[option]}</StatisticsNumber>
+          </StatisticsItem>
+        ))}
         <StatisticsItem>
           <StatisticsText>Total</StatisticsText>
           <StatisticsNumber>{total}</StatisticsNumber>
